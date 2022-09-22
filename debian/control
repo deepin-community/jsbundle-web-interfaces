@@ -1,0 +1,99 @@
+Source: jsbundle-web-interfaces
+Section: javascript
+Priority: optional
+Maintainer: Debian Javascript Maintainers <pkg-javascript-devel@lists.alioth.debian.org>
+Uploaders:
+ Jonas Smedegaard <dr@jones.dk>,
+Build-Depends:
+ debhelper-compat (= 13),
+ jq,
+ mocha <!nocheck>,
+ node-babel7,
+ node-regenerate,
+ nodejs,
+ pandoc <!nodoc>,
+Standards-Version: 4.6.0
+Vcs-Git: https://salsa.debian.org/js-team/jsbundle-web-interfaces.git
+Vcs-Browser: https://salsa.debian.org/js-team/jsbundle-web-interfaces
+Rules-Requires-Root: no
+
+Package: node-auth-header
+Architecture: all
+Multi-Arch: foreign
+Depends:
+ ${misc:Depends},
+Description: parse HTTP auth/authz headers - Node.js library
+ auth-header deals
+ with obscene HTTP "Authorization" and "WWW-Authenticate" headers.
+ .
+ The HTTP "Authorization" and "WWW-Authenticate" family of headers
+ are both pretty nightmareish;
+ there has been, up until recently, no wide consensus
+ about how they should be formatted
+ and so parsing them is lots of fun
+ if fun is pulling your hair out.
+ .
+ This library provides an implementation of RFC7235
+ which allows for the parsing
+ of many known existing authorization headers
+ (like Basic and Digest)
+ as well as any future ones which follow the standard.
+ Noteably, this library is less strict than it could be
+ to parse some of these legacy formats.
+ .
+ In addition to the format of the header itself being in flux,
+ WWW-Authenticate has its own nasty surprise:
+ sometimes multiple authentication prompts can appear in one header,
+ sometimes they can appear in multiple headers;
+ we _ONLY_ support the latter case
+ since trying to disambiguate
+ between a second prompt and parameters for the first
+ is just about impossible.
+ .
+ This package provides auth-header usable with Node.js -
+ an event-based server-side JavaScript engine.
+
+Package: node-standard-error
+Architecture: all
+Multi-Arch: foreign
+Depends:
+ ${misc:Depends},
+Description: subclassable standard errors - Node.js library
+ StandardError.js is a tiny JavaScript library
+ that simplifies creating subclasses of Error
+ for custom error classes with the correct name and stack property.
+ Saves you from writing a few lines of boilerplate.
+ .
+ This package provides StandardError.js usable with Node.js -
+ an event-based server-side JavaScript engine.
+
+Package: node-standard-http-error
+Architecture: all
+Multi-Arch: foreign
+Depends:
+ node-standard-error,
+ ${misc:Depends},
+Description: subclassable standard HTTP errors - Node.js library
+ StandardHttpError.js is a very simple but useful error class
+ for JavaScript that represents HTTP errors.
+ You can then detect it with instanceof in error handling middleware
+ and act accordingly.
+ .
+ This package provides StandardHttpError.js usable with Node.js -
+ an event-based server-side JavaScript engine.
+
+Package: node-webidl-conversions
+Architecture: all
+Multi-Arch: foreign
+Depends:
+ ${misc:Depends},
+Description: web IDL type conversions on JavaScript values - Node.js library
+ Webidl-conversions implements, in JavaScript, the algorithms
+ to convert a given JavaScript value according to a given Web IDL type.
+ .
+ Web IDL is an interface description language (IDL) format
+ for describing application programming interfaces (APIs)
+ that are intended to be implemented in web browsers.
+ .
+ This package provides webidl-conversions usable with Node.js -
+ an event-based server-side JavaScript engine.

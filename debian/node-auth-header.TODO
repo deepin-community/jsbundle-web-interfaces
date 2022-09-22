@@ -1,0 +1,2 @@
+  * Check upstream testsuite when package node-jest is in Debian.
+  * Update watch file when auth-header upstream tags their releases.

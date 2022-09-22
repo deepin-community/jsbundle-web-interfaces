@@ -1,0 +1,82 @@
+jsbundle-web-interfaces (1.1.0+~2.0.1~ds+~7.0.0+~0~20180821-2) unstable; urgency=medium
+
+  * fix revert to build-depend on nodejs (used during build after all);
+    closes: bug#998261, thanks to Paul Gevers
+
+ -- Jonas Smedegaard <dr@jones.dk>  Mon, 01 Nov 2021 20:07:16 +0100
+
+jsbundle-web-interfaces (1.1.0+~2.0.1~ds+~7.0.0+~0~20180821-1) unstable; urgency=medium
+
+  [ upstream of webidl-conversions ]
+  * new release
+
+  * update copyright info:
+    + use Reference field (not License-Reference);
+      tighten lintian overrides
+    + update coverage
+  * use debhelper compatibility level 13 (not 12)
+  * declare compliance with Debian Policy 4.6.0
+  * stop (build-)depend explicitly on nodejs: not executed directly
+
+ -- Jonas Smedegaard <dr@jones.dk>  Mon, 18 Oct 2021 02:07:05 +0200
+
+jsbundle-web-interfaces (1.1.0+~2.0.1~ds+~6.1.0+~0~20180821-1) unstable; urgency=medium
+
+  [ upstream of webidl-conversions ]
+  * new release
+
+  * simplify source script copyright-check
+
+ -- Jonas Smedegaard <dr@jones.dk>  Fri, 25 Sep 2020 11:36:45 +0200
+
+jsbundle-web-interfaces (1.1.0+~2.0.1~ds+~6.0.0+~0~20180821-2) unstable; urgency=medium
+
+  * stop wrap tests with prove harness
+  * use babel7 presets;
+    build-depend on node-babel7
+    (not node-babel-cli node-babel-core node-babel-preset-env
+    node-babel-preset-flow node-babel-register);
+    closes: bug#960024, thanks to Pirate Praveen
+
+ -- Jonas Smedegaard <dr@jones.dk>  Sat, 09 May 2020 08:35:10 +0200
+
+jsbundle-web-interfaces (1.1.0+~2.0.1~ds+~6.0.0+~0~20180821-1) unstable; urgency=medium
+
+  [ upstream of webidl-conversions ]
+  * new release
+
+  [ Jonas Smedegaard ]
+  * use debhelper compatibility level 12 (not 9);
+    build-depend on debhelper-compat (not debhelper)
+  * declare compliance with Debian Policy 4.5.0
+  * add TODO about covering more tests
+  * copyright: extend coverage
+
+ -- Jonas Smedegaard <dr@jones.dk>  Fri, 03 Apr 2020 18:15:38 +0200
+
+jsbundle-web-interfaces (1.1.0+~2.0.1~ds+~5.0.0+~0~20180821-1) unstable; urgency=medium
+
+  [ upstream of webidl-conversions ]
+  * new release
+
+ -- Jonas Smedegaard <dr@jones.dk>  Sat, 14 Dec 2019 20:30:48 +0100
+
+jsbundle-web-interfaces (1.1.0+~2.0.1~ds+~4.0.2+~0~20180821-3) unstable; urgency=medium
+
+  * fix clean generated docs
+  * update watch file: use dversionmangle=auto
+
+ -- Jonas Smedegaard <dr@jones.dk>  Sat, 30 Nov 2019 11:21:38 +0100
+
+jsbundle-web-interfaces (1.1.0+~2.0.1~ds+~4.0.2+~0~20180821-2) unstable; urgency=medium
+
+  * Fix clean generated documentation files.
+
+ -- Jonas Smedegaard <dr@jones.dk>  Thu, 10 Oct 2019 15:20:36 +0200
+
+jsbundle-web-interfaces (1.1.0+~2.0.1~ds+~4.0.2+~0~20180821-1) unstable; urgency=low
+
+  * Initial release.
+    Closes: Bug#921385.
+
+ -- Jonas Smedegaard <dr@jones.dk>  Wed, 09 Oct 2019 19:02:25 +0200

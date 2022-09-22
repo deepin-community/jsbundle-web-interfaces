@@ -1,0 +1,95 @@
+#!/usr/bin/make -f
+
+include /usr/share/dpkg/pkg-info.mk
+
+# detect when build is targeted the experimental suite
+DEB_SUITE_EXP = $(filter experimental% UNRELEASED,$(DEB_DISTRIBUTION))
+
+# generate documentation unless nodoc requested
+ifeq (,$(filter nodoc,$(DEB_BUILD_OPTIONS)))
+DOCS_md = $(wildcard README.md X*/README.md)
+DOCS = $(DOCS_md:.md=.html) $(DOCS_md:.md=.txt)
+CHANGELOGS_md = $(wildcard CHANGELOG.md X*/CHANGELOG.md)
+CHANGELOGS = $(CHANGELOGS_md:.md=.html) $(CHANGELOGS_md:.md=.txt)
+endif
+
+MOCHA = mocha --reporter tap
+
+# from folder $1 check mocha tests $2
+# * tolerate failure of experimental builds
+_mocha = $(if $(filter-out .,$1),cd $1 && )$(strip \
+ $(MOCHA) $2 \
+ $(if $(DEB_SUITE_EXP),|| true))
+
+# either resolve some files to include, or explicitly exclude
+# 1: include filter, 2: include list, 3: exclude filter
+_get_files_or_exclude = $(strip $(if $(filter $1%,$($2)),\
+ -- $(filter $1%,$($2)),\
+ -X$(or $3,$(patsubst %S,%,$2))))
+
+override_dh_auto_build: \
+ Xauth/index.js \
+ Xhttp/codes.json \
+ $(CHANGELOGS) $(DOCS)
+
+# check testsuites unless nocheck requested
+override_dh_auto_test:
+#	$(call _must)
+#	$(call _jest, Xauth)
+#	$(call _must, Xhttp)
+	$(call _mocha, Xwebidl, test/*.js)
+
+# suppress upstream cleanup unneeded here
+override_dh_auto_clean:
+
+override_dh_installdocs:
+	dh_installdocs -pnode-auth-header \
+		$(call _get_files_or_exclude,Xauth/,DOCS,README)
+	dh_installdocs -pnode-standard-error \
+		$(call _get_files_or_exclude,README,DOCS,README)
+	dh_installdocs -pnode-standard-http-error \
+		$(call _get_files_or_exclude,Xhttp/,DOCS,README)
+	dh_installdocs -pnode-webidl-conversions \
+		$(call _get_files_or_exclude,Xwebidl/,DOCS,README)
+
+override_dh_installchangelogs:
+	dh_installchangelogs -pnode-auth-header \
+		$(call _get_files_or_exclude,Xauth/,CHANGELOGS)
+	dh_installchangelogs -pnode-standard-error \
+		$(call _get_files_or_exclude,CHANGELOG,CHANGELOGS)
+	dh_installchangelogs -pnode-standard-http-error \
+		$(call _get_files_or_exclude,Xhttp/,CHANGELOGS)
+	dh_installchangelogs -pnode-webidl-conversions \
+		$(call _get_files_or_exclude,Xwebidl/,CHANGELOGS)
+
+# prefix upstream version to our weird bundle to ease dependency tracking
+override_dh_gencontrol:
+	dh_gencontrol -pnode-auth-header \
+		-- -v$(shell jq --raw-output .version < Xauth/package.json)~$(DEB_VERSION)
+	dh_gencontrol -pnode-standard-error \
+		-- -v$(shell jq --raw-output .version < package.json)~$(DEB_VERSION)
+	dh_gencontrol -pnode-standard-http-error \
+		-- -v$(shell jq --raw-output .version < Xhttp/package.json)~$(DEB_VERSION)
+	dh_gencontrol -pnode-webidl-conversions \
+		-- -v$(shell jq --raw-output .version < Xwebidl/package.json)~$(DEB_VERSION)
+
+override_dh_clean:
+	dh_clean $(DOCS) $(CHANGELOGS)
+
+Xauth/index.js:
+	BROWSERSLIST='node 6' babeljs \
+		--no-babelrc --presets=@babel/preset-env,@babel/preset-flow \
+		--out-dir Xauth/dist \
+		-- Xauth/src
+
+Xhttp/codes.json:
+	make -C Xhttp codes.json
+
+%.html: %.md
+	pandoc --from gfm-raw_html --to html --standalone --output $@ $<
+
+%.txt: %.md
+	pandoc --from gfm-raw_html --to plain --output $@ $<
+
+%:
+	dh $@

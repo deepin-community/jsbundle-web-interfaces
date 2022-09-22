@@ -1,0 +1,37 @@
+version=4
+# check: uscan --report
+# update: uscan && gbp import-orig ../jsbundle-web-interfaces_*.orig.tar.gz
+# see also <https://wiki.debian.org/Javascript/GroupSourcesTutorial>
+
+opts=\
+filenamemangle=s/.*?v?(@ANY_VERSION@@ARCHIVE_EXT@)/@PACKAGE@-$1/ \
+https://github.com/moll/js-standard-error/tags \
+.*?v?@ANY_VERSION@@ARCHIVE_EXT@ group
+
+opts=\
+component=Xhttp,\
+dversionmangle=auto,repacksuffix=~ds,compression=gzip,\
+filenamemangle=s/.*?v?(@ANY_VERSION@@ARCHIVE_EXT@)/standard-http-error-$1/ \
+https://github.com/moll/js-standard-http-error/tags \
+.*?v?@ANY_VERSION@@ARCHIVE_EXT@ group
+
+opts=\
+component=Xwebidl,\
+filenamemangle=s/.*?v?(@ANY_VERSION@@ARCHIVE_EXT@)/webid-conversions-$1/ \
+https://github.com/jsdom/webidl-conversions/tags \
+.*?v?@ANY_VERSION@@ARCHIVE_EXT@ group
+
+# TODO: replace when upstream tags their releases
+#opts=\
+#component=Xauth,\
+#filenamemangle=s/.*?v?(@ANY_VERSION@@ARCHIVE_EXT@)/auth-header-$1/ \
+#https://github.com/izaakschroeder/auth-header/tags \
+#.*?v?@ANY_VERSION@@ARCHIVE_EXT@ group
+
+opts=\
+component=Xauth,\
+mode=git,compression=gzip,\
+pretty=0~%cd,\
+filenamemangle=s/.*?v?(@ANY_VERSION@@ARCHIVE_EXT@)/auth-header-$1/ \
+https://github.com/izaakschroeder/auth-header \
+HEAD group

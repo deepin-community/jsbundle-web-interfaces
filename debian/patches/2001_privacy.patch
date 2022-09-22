@@ -1,0 +1,50 @@
+Description: Avoid privacy breach in documentation
+Author: Jonas Smedegaard <dr@jones.dk>
+Last-Update: 2019-02-04
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+--- a/README.md
++++ b/README.md
+@@ -1,7 +1,5 @@
+ StandardError.js
+ ================
+-[![NPM version][npm-badge]](http://badge.fury.io/js/standard-error)
+-[npm-badge]: https://badge.fury.io/js/standard-error.png
+ 
+ StandardError.js is a tiny JavaScript library that simplifies creating
+ subclasses of `Error` for **custom error classes** with the correct `name` and
+--- a/Xauth/README.md
++++ b/Xauth/README.md
+@@ -2,12 +2,6 @@
+ 
+ Deal with obscene HTTP `Authorization` and `WWW-Authenticate` headers.
+ 
+-![build status](http://img.shields.io/travis/izaakschroeder/auth-header.svg?style=flat&branch=master)
+-![coverage](http://img.shields.io/coveralls/izaakschroeder/auth-header.svg?style=flat&branch=master)
+-![license](http://img.shields.io/npm/l/auth-header.svg?style=flat&branch=master)
+-![version](http://img.shields.io/npm/v/auth-header.svg?style=flat&branch=master)
+-![downloads](http://img.shields.io/npm/dm/auth-header.svg?style=flat&branch=master)
+-
+ | Type          | Parse   | Format  |
+ | ------------- | ------- | ------- |
+ | Basic         |    ✓    |    ✓    |
+--- a/Xhttp/README.md
++++ b/Xhttp/README.md
+@@ -1,7 +1,5 @@
+ StandardHttpError.js
+ ====================
+-[![NPM version][npm-badge]](https://www.npmjs.com/package/standard-http-error)
+-[![Build status][travis-badge]](https://travis-ci.org/moll/js-standard-http-error)
+ 
+ **StandardHttpError.js** is a very simple but useful **error class** for
+ JavaScript and Node.js that represents HTTP errors. You can then detect it with
+@@ -12,9 +10,6 @@
+ not. They don't have to exist beforehand, so if you're living on the cutting
+ edge, feel free to use `new HttpError(451, "Unavailable For Legal Reasons")`.
+ 
+-[npm-badge]: https://img.shields.io/npm/v/standard-http-error.svg
+-[travis-badge]: https://travis-ci.org/moll/js-standard-http-error.png?branch=master
+-
+ 
+ Installing
+ ----------

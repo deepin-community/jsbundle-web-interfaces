@@ -1,0 +1,19 @@
+Test-Command: node -e "require('standard-error');"
+Depends:
+ node-standard-error,
+Restrictions: superficial
+
+Test-Command: node -e "require('auth-header');"
+Depends:
+ node-auth-header,
+Restrictions: superficial
+
+Test-Command: node -e "require('standard-http-error');"
+Depends:
+ node-standard-http-error,
+Restrictions: superficial
+
+Test-Command: node -e "require('webidl-conversions');"
+Depends:
+ node-webidl-conversions,
+Restrictions: superficial
