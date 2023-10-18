@@ -1,5 +1,6 @@
 #!/usr/bin/make -f
 
+# resolve DEB_DISTRIBUTION
 include /usr/share/dpkg/pkg-info.mk
 
 # detect when build is targeted the experimental suite
@@ -35,7 +36,7 @@ override_dh_auto_build: \
 # check testsuites unless nocheck requested
 override_dh_auto_test:
 #	$(call _must)
-#	$(call _jest, Xauth)
+	$(call _jest, Xauth)
 #	$(call _must, Xhttp)
 	$(call _mocha, Xwebidl, test/*.js)
 
@@ -71,7 +72,8 @@ override_dh_gencontrol:
 	dh_gencontrol -pnode-standard-http-error \
 		-- -v$(shell jq --raw-output .version < Xhttp/package.json)~$(DEB_VERSION)
 	dh_gencontrol -pnode-webidl-conversions \
-		-- -v$(shell jq --raw-output .version < Xwebidl/package.json)~$(DEB_VERSION)
+		-- -v$(shell jq --raw-output .version < Xwebidl/package.json)~$(DEB_VERSION) \
+		-Vwebidl-types:Version=$(shell jq --raw-output .version < Xwebidl-types/package.json)~$(DEB_VERSION)
 
 override_dh_clean:
 	dh_clean $(DOCS) $(CHANGELOGS)

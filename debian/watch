@@ -1,6 +1,6 @@
 version=4
 # check: uscan --report
-# update: uscan && gbp import-orig ../jsbundle-web-interfaces_*.orig.tar.gz
+# update: gbp import-orig --uscan
 # see also <https://wiki.debian.org/Javascript/GroupSourcesTutorial>
 
 opts=\
@@ -10,28 +10,43 @@ https://github.com/moll/js-standard-error/tags \
 
 opts=\
 component=Xhttp,\
+ctype=nodejs,\
 dversionmangle=auto,repacksuffix=~ds,compression=gzip,\
 filenamemangle=s/.*?v?(@ANY_VERSION@@ARCHIVE_EXT@)/standard-http-error-$1/ \
 https://github.com/moll/js-standard-http-error/tags \
-.*?v?@ANY_VERSION@@ARCHIVE_EXT@ group
+.*?v?@ANY_VERSION@@ARCHIVE_EXT@ checksum
 
 opts=\
 component=Xwebidl,\
+ctype=nodejs,\
 filenamemangle=s/.*?v?(@ANY_VERSION@@ARCHIVE_EXT@)/webid-conversions-$1/ \
 https://github.com/jsdom/webidl-conversions/tags \
-.*?v?@ANY_VERSION@@ARCHIVE_EXT@ group
+.*?v?@ANY_VERSION@@ARCHIVE_EXT@ checksum
+
+# NPM registry needed for node types (avoid if at all possible!)
+opts=\
+component=Xwebidl-types,\
+ctype=nodejs,\
+searchmode=plain,\
+pgpmode=none,\
+filenamemangle=s/.*?-?(@ANY_VERSION@@ARCHIVE_EXT@)/@PACKAGE@-webidl-types-$1/,\
+dversionmangle=auto \
+https://registry.npmjs.org/@types/webidl-conversions \
+https://registry.npmjs.org/@types/webidl-conversions/-/webidl-conversions-@ANY_VERSION@@ARCHIVE_EXT@ checksum
 
 # TODO: replace when upstream tags their releases
 #opts=\
 #component=Xauth,\
+#ctype=nodejs,\
 #filenamemangle=s/.*?v?(@ANY_VERSION@@ARCHIVE_EXT@)/auth-header-$1/ \
 #https://github.com/izaakschroeder/auth-header/tags \
-#.*?v?@ANY_VERSION@@ARCHIVE_EXT@ group
+#.*?v?@ANY_VERSION@@ARCHIVE_EXT@ checksum
 
 opts=\
 component=Xauth,\
+ctype=nodejs,\
 mode=git,compression=gzip,\
-pretty=0~%cd,\
+pretty=0.0.%cd,\
 filenamemangle=s/.*?v?(@ANY_VERSION@@ARCHIVE_EXT@)/auth-header-$1/ \
 https://github.com/izaakschroeder/auth-header \
-HEAD group
+HEAD checksum

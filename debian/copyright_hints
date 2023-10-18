@@ -34,6 +34,8 @@ Files: CHANGELOG.md
  Xhttp/test/codes_test.js
  Xhttp/test/index_test.js
  Xhttp/test/mocha.opts
+ Xwebidl-types/README.md
+ Xwebidl-types/index.d.ts
  Xwebidl/.editorconfig
  Xwebidl/.eslintignore
  Xwebidl/.eslintrc.json
@@ -79,8 +81,8 @@ License: UNKNOWN
 
 Files: LICENSE
  Xhttp/LICENSE
-Copyright: 2014
-  2015
+Copyright: 2014, Andri Möll <andri@dot.ee>
+  2015, Andri Möll <andri@dot.ee>
 License: AGPL-3+
  FIXME
 
@@ -97,5 +99,15 @@ License: BSD-2-clause
 Files: Xauth/package.json
 Copyright: NONE
 License: CC0-1.0
+ FIXME
+
+Files: Xwebidl-types/package.json
+Copyright: NONE
+License: Expat
+ FIXME
+
+Files: Xwebidl-types/LICENSE
+Copyright: Microsoft Corporation.
+License: Expat
  FIXME
 

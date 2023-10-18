@@ -1,3 +1,51 @@
+jsbundle-web-interfaces (1.1.0+~cs15.1.20180823-3) unstable; urgency=medium
+
+  * Team upload
+  * Declare compliance with policy 4.6.2
+  * Add upstream/metadata
+  * Fix clean (Closes: #1048165)
+
+ -- Yadd <yadd@debian.org>  Mon, 14 Aug 2023 14:45:00 +0400
+
+jsbundle-web-interfaces (1.1.0+~cs15.1.20180823-2) unstable; urgency=medium
+
+  * update git-buildpackage config:
+    + use DEP-14 branch names debian/latest upstream/latest
+      (not debian/master upstream)
+    + add usage comment
+  * update watch file:
+    + simplify usage comment
+
+ -- Jonas Smedegaard <dr@jones.dk>  Mon, 07 Feb 2022 18:42:28 +0100
+
+jsbundle-web-interfaces (1.1.0+~cs15.1.20180823-1) unstable; urgency=medium
+
+  * annotate test-only build-dependency on jest
+  * update watch file: use version type checksum
+  * update copyright info: update coverage
+  * embed, install and provide
+    virtual package node-types-webidl-conversions;
+    closes: bug#1005111, thanks to Yadd
+
+ -- Jonas Smedegaard <dr@jones.dk>  Mon, 07 Feb 2022 18:15:42 +0100
+
+jsbundle-web-interfaces (1.1.0+~2.0.1~ds+~7.0.0+~0~20180821-4) unstable; urgency=medium
+
+  * update watch file: set ctype=nodejs for components
+  * check auth-header testsuite during build;
+    build-depend on jest
+
+ -- Jonas Smedegaard <dr@jones.dk>  Wed, 15 Dec 2021 12:42:08 +0100
+
+jsbundle-web-interfaces (1.1.0+~2.0.1~ds+~7.0.0+~0~20180821-3) unstable; urgency=medium
+
+  * fix have autopkgtests depend on nodejs,
+    and stop build-depend on nodejs:
+    really closes: bug#998261;
+    tighten autopkgtests to do require test in root dir
+
+ -- Jonas Smedegaard <dr@jones.dk>  Wed, 17 Nov 2021 17:41:55 +0100
+
 jsbundle-web-interfaces (1.1.0+~2.0.1~ds+~7.0.0+~0~20180821-2) unstable; urgency=medium
 
   * fix revert to build-depend on nodejs (used during build after all);

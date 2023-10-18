@@ -6,13 +6,13 @@ Uploaders:
  Jonas Smedegaard <dr@jones.dk>,
 Build-Depends:
  debhelper-compat (= 13),
+ jest <!nocheck>,
  jq,
  mocha <!nocheck>,
  node-babel7,
  node-regenerate,
- nodejs,
  pandoc <!nodoc>,
-Standards-Version: 4.6.0
+Standards-Version: 4.6.2
 Vcs-Git: https://salsa.debian.org/js-team/jsbundle-web-interfaces.git
 Vcs-Browser: https://salsa.debian.org/js-team/jsbundle-web-interfaces
 Rules-Requires-Root: no
@@ -87,6 +87,8 @@ Architecture: all
 Multi-Arch: foreign
 Depends:
  ${misc:Depends},
+Provides:
+ node-types-webidl-conversions (= ${webidl-types:Version}),
 Description: web IDL type conversions on JavaScript values - Node.js library
  Webidl-conversions implements, in JavaScript, the algorithms
  to convert a given JavaScript value according to a given Web IDL type.
