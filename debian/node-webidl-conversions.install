@@ -1,1 +1,2 @@
 Xwebidl/*.json Xwebidl/lib /usr/share/nodejs/webidl-conversions
+Xwebidl-types/package.json Xwebidl-types/*.d.ts /usr/share/nodejs/@types/webidl-conversions
